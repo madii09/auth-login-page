@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+aside ul li {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+aside ul li:hover {
+  background-color: #f0f0f0;
+}
+aside ul li.active {
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+}
+
+.mainContent nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  background: #f8f8f8;
+}
+.mainContent .tableWrapper section {
+  margin-bottom: 80px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}/*# sourceMappingURL=global.css.map */
