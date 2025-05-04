@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -34,13 +34,13 @@ const Login = () => {
       });
   };
 
-    useEffect(() => {
-        const token = localStorage.getItem('accesstokenn');
+  useEffect(() => {
+    const token = localStorage.getItem('accesstokenn');
 
-        if(token) {
-            navigate('/home');
-        }
-    }, []);
+    if (token) {
+      navigate('/home');
+    }
+  }, [navigate]);
 
   return (
     <div style={{ maxWidth: '400px', margin: '100px auto' }}>
