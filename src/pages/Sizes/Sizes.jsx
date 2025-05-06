@@ -1,30 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const Products = () => {
+const Sizes = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [size, setSize] = useState('');
+  const [clickId, setClickId] = useState();
+  const token = localStorage.getItem('accesstokenn');
+
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2')
+    fetch('https://back.ifly.com.uz/api/sizes')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
-
-  //get api
 
   useEffect(() => {
     getCategory();
   }, []);
 
-  //post api
-
-  const [product, setProduct] = useState('');
-  const [pagination, setPagination] = useState('');
-  const token = localStorage.getItem('accesstokenn');
-
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2', {
+    fetch('https://back.ifly.com.uz/api/sizes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,8 +29,7 @@ const Products = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        products: product,
-        pagination: pagination,
+        size: size,
       }),
     })
       .then((response) => response.json())
@@ -47,18 +43,14 @@ const Products = () => {
         }
       });
   };
-  //delete
   const deleteCategory = (id) => {
-    fetch(
-      `https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2/${id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    fetch(`https://back.ifly.com.uz/api/sizes/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((response) => {
         if (response?.success) {
@@ -70,29 +62,23 @@ const Products = () => {
       });
   };
 
-  //patch update
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [clickId, setClickId] = useState();
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(
-      `https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2/${clickId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          products: product,
-          pagination: pagination,
-        }),
-      }
-    )
+    fetch(`https://back.ifly.com.uz/api/sizes/${clickId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        size: size,
+      }),
+    })
       .then((res) => res.json())
       .then((item) => {
         if (item?.success) {
           toast.success('Edit Successful');
+          /////////here
           getCategory();
           setEditModalOpen(false);
         } else {
@@ -100,11 +86,10 @@ const Products = () => {
         }
       });
   };
-
   return (
     <div className='category-container'>
       <div className='category-header-container'>
-        <h2>Category</h2>
+        <h2>Sizes</h2>
 
         <div className='btn'>
           <button
@@ -114,7 +99,7 @@ const Products = () => {
               setEditModalOpen(false);
             }}
           >
-            Add Category
+            Add Size
           </button>
         </div>
       </div>
@@ -125,29 +110,14 @@ const Products = () => {
             <div className='close' onClick={() => setModalOpen(false)}>
               x
             </div>
-            <h3>Add Category</h3>
+            <h3>Add Sizes</h3>
             <form onSubmit={createCategory}>
-              <label htmlFor=''>Category Name (EN)</label>
               <input
-                onChange={(e) => setProduct(e.target.value)}
+                onChange={(e) => setSize(e.target.value)}
                 type='text'
-                placeholder='English name'
+                placeholder='Size name'
                 required
               />
-              <label htmlFor=''>Category Name (RU)</label>
-              <input
-                onChange={(e) => setPagination(e.target.value)}
-                type='text'
-                placeholder='Russian name'
-                required
-              />
-              {/* <label htmlFor=''>Category Name (DE)</label>
-              <input
-                onChange={(e) => setNameDe(e.target.value)}
-                type='text'
-                placeholder='German name'
-                required
-              /> */}
             </form>
             <button type='submit' onClick={createCategory}>
               Add Category
@@ -159,54 +129,32 @@ const Products = () => {
       {editModalOpen && (
         <div className='modal-overlay' onClick={() => setEditModalOpen(false)}>
           <div className='modal' onClick={(e) => e.stopPropagation()}>
-            <h3>Edit Category</h3>
+            <h3>Edit Size</h3>
             <form onSubmit={editCategory}>
               <input
-                onChange={(e) => setProduct(e.target.value)}
+                onChange={(e) => setSize(e.target.value)}
                 type='text'
-                placeholder='name en'
+                placeholder='Size name'
                 required
               />
-              <input
-                onChange={(e) => setPagination(e.target.value)}
-                type='text'
-                placeholder='name ru'
-                required
-              />
-              {/* <input
-                onChange={(e) => setNameDe(e.target.value)}
-                type='text'
-                placeholder='name de'
-                required
-              /> */}
-              <button type='submit'>Save Changes</button>
+              <button type='submit'>Update Size</button>
             </form>
-            <button onClick={() => setEditModalOpen(false)}>Close</button>
           </div>
         </div>
       )}
-
       <table id='customers'>
         <thead>
           <tr>
             <th>№</th>
-            <th>Images</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Colors</th>
             <th>Sizes</th>
-            <th>Discount</th>
-            <th>Materials</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {data?.map((item, index) => (
             <tr key={item.id}>
               <td>{index + 1}</td>
-              <td>{item.product}</td>
-              <td>{item.pagination}</td>
+              <td>{item.size}</td>
               <td>
                 <button
                   className='btn-edit'
@@ -234,4 +182,5 @@ const Products = () => {
     </div>
   );
 };
-export default Products;
+
+export default Sizes;

@@ -22,10 +22,12 @@ const Navbar = () => {
       <button
         onClick={logoutFunction}
         style={{
-          padding: '8px 16px',
+          padding: '10px 16px',
+          margin: '20px',
           backgroundColor: '#e7000b',
           color: '#fff',
           border: 'none',
+          fontSize: '16px',
           borderRadius: '4px',
           cursor: 'pointer',
         }}

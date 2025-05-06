@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const Products = () => {
+const Colors = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2')
+    fetch('https://back.ifly.com.uz/api/colors')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -18,13 +18,14 @@ const Products = () => {
 
   //post api
 
-  const [product, setProduct] = useState('');
-  const [pagination, setPagination] = useState('');
+  const [colorEn, setColorEn] = useState('');
+  const [colorDe, setColorDe] = useState('');
+  const [colorRu, setColorRu] = useState('');
   const token = localStorage.getItem('accesstokenn');
 
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2', {
+    fetch('https://back.ifly.com.uz/api/colors', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,8 +33,9 @@ const Products = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        products: product,
-        pagination: pagination,
+        color_en: colorEn,
+        color_ru: colorRu,
+        color_de: colorDe,
       }),
     })
       .then((response) => response.json())
@@ -49,16 +51,13 @@ const Products = () => {
   };
   //delete
   const deleteCategory = (id) => {
-    fetch(
-      `https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2/${id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    fetch(`https://back.ifly.com.uz/api/colors/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((response) => {
         if (response?.success) {
@@ -75,20 +74,18 @@ const Products = () => {
   const [clickId, setClickId] = useState();
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(
-      `https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2/${clickId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          products: product,
-          pagination: pagination,
-        }),
-      }
-    )
+    fetch(`https://back.ifly.com.uz/api/colors/${clickId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        color_en: colorEn,
+        color_ru: colorRu,
+        color_de: colorDe,
+      }),
+    })
       .then((res) => res.json())
       .then((item) => {
         if (item?.success) {
@@ -104,7 +101,7 @@ const Products = () => {
   return (
     <div className='category-container'>
       <div className='category-header-container'>
-        <h2>Category</h2>
+        <h2>Color</h2>
 
         <div className='btn'>
           <button
@@ -114,7 +111,7 @@ const Products = () => {
               setEditModalOpen(false);
             }}
           >
-            Add Category
+            Add Color
           </button>
         </div>
       </div>
@@ -125,32 +122,32 @@ const Products = () => {
             <div className='close' onClick={() => setModalOpen(false)}>
               x
             </div>
-            <h3>Add Category</h3>
+            <h3>Add Color</h3>
             <form onSubmit={createCategory}>
-              <label htmlFor=''>Category Name (EN)</label>
+              <label htmlFor=''>Color (EN)</label>
               <input
-                onChange={(e) => setProduct(e.target.value)}
+                onChange={(e) => setColorEn(e.target.value)}
                 type='text'
-                placeholder='English name'
+                placeholder='Color in Eng'
                 required
               />
-              <label htmlFor=''>Category Name (RU)</label>
+              <label htmlFor=''>Color (RU)</label>
               <input
-                onChange={(e) => setPagination(e.target.value)}
+                onChange={(e) => setColorRu(e.target.value)}
                 type='text'
-                placeholder='Russian name'
+                placeholder='Color in Russian'
                 required
               />
-              {/* <label htmlFor=''>Category Name (DE)</label>
+              <label htmlFor=''>Color (DE)</label>
               <input
-                onChange={(e) => setNameDe(e.target.value)}
+                onChange={(e) => setColorDe(e.target.value)}
                 type='text'
-                placeholder='German name'
+                placeholder='Farbe auf Deutsch'
                 required
-              /> */}
+              />
             </form>
             <button type='submit' onClick={createCategory}>
-              Add Category
+              Add Color
             </button>
           </div>
         </div>
@@ -159,26 +156,26 @@ const Products = () => {
       {editModalOpen && (
         <div className='modal-overlay' onClick={() => setEditModalOpen(false)}>
           <div className='modal' onClick={(e) => e.stopPropagation()}>
-            <h3>Edit Category</h3>
+            <h3>Edit Color</h3>
             <form onSubmit={editCategory}>
               <input
-                onChange={(e) => setProduct(e.target.value)}
+                onChange={(e) => setColorEn(e.target.value)}
                 type='text'
                 placeholder='name en'
                 required
               />
               <input
-                onChange={(e) => setPagination(e.target.value)}
+                onChange={(e) => setColorRu(e.target.value)}
                 type='text'
                 placeholder='name ru'
                 required
               />
-              {/* <input
-                onChange={(e) => setNameDe(e.target.value)}
+              <input
+                onChange={(e) => setColorDe(e.target.value)}
                 type='text'
                 placeholder='name de'
                 required
-              /> */}
+              />
               <button type='submit'>Save Changes</button>
             </form>
             <button onClick={() => setEditModalOpen(false)}>Close</button>
@@ -190,23 +187,19 @@ const Products = () => {
         <thead>
           <tr>
             <th>№</th>
-            <th>Images</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Colors</th>
-            <th>Sizes</th>
-            <th>Discount</th>
-            <th>Materials</th>
+            <th>Colors ENG </th>
+            <th>Colors RU </th>
+            <th>Colors DE </th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {data?.map((item, index) => (
             <tr key={item.id}>
               <td>{index + 1}</td>
-              <td>{item.product}</td>
-              <td>{item.pagination}</td>
+              <td>{item.color_en}</td>
+              <td>{item.color_ru}</td>
+              <td>{item.color_de}</td>
               <td>
                 <button
                   className='btn-edit'
@@ -234,4 +227,5 @@ const Products = () => {
     </div>
   );
 };
-export default Products;
+
+export default Colors;

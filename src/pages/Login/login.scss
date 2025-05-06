@@ -1,1 +1,66 @@
+$form-color: #007bff;
+$form-radius: 12px;
 
+.form {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: $form-radius;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    input {
+      margin-right: 8px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #333;
+    }
+  }
+
+  button[type='submit'] {
+    width: 100%;
+    background-color: $form-color;
+    color: white;
+    padding: 10px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($form-color, 10%);
+    }
+  }
+}

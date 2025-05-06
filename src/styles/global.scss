@@ -3,8 +3,18 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  font-size: 18px;
+  font-size: medium;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+.menu-item {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px auto;
+  text-align: center;
+  color: white;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}

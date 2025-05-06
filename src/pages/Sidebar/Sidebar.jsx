@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import './sidebar.scss';
+import './sidebar.css';
+import '../../styles/global.scss';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Sidebar = () => {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        width: '250px',
+        width: '220px',
         alignItems: 'center',
       }}
     >
@@ -41,11 +42,12 @@ const Sidebar = () => {
       >
         <li
           onClick={() => handleNavigate('products')}
+          className='menu-item'
           style={{
             padding: '10px',
             cursor: 'pointer',
             borderRadius: '5px',
-            margin: '20px auto',
+            margin: '5px auto',
             textAlign: 'center',
             backgroundColor: isActive('products') ? '#00a63e' : 'transparent',
             color: isActive('category') ? '#fff' : '#fff',
@@ -55,11 +57,12 @@ const Sidebar = () => {
         </li>
         <li
           onClick={() => handleNavigate('category')}
+          className='menu-item'
           style={{
             padding: '10px',
             cursor: 'pointer',
             borderRadius: '5px',
-            margin: '20px auto',
+            margin: '10px auto',
             textAlign: 'center',
             backgroundColor: isActive('category') ? '#00a63e' : 'transparent',
             color: isActive('category') ? '#fff' : '#fff',
@@ -72,8 +75,9 @@ const Sidebar = () => {
           style={{
             padding: '10px',
             cursor: 'pointer',
-            margin: '20px auto',
+            margin: '10px auto',
             textAlign: 'center',
+            borderRadius: '5px',
             backgroundColor: isActive('discount') ? '#00a63e' : 'transparent',
             color: isActive('discount') ? '#fff' : '#fff',
           }}
@@ -85,8 +89,9 @@ const Sidebar = () => {
           style={{
             padding: '10px',
             cursor: 'pointer',
-            margin: '20px auto',
+            margin: '10px auto',
             textAlign: 'center',
+            borderRadius: '5px',
             backgroundColor: isActive('sizes') ? '#00a63e' : 'transparent',
             color: isActive('sizes') ? '#fff' : '#fff',
           }}
@@ -98,13 +103,70 @@ const Sidebar = () => {
           style={{
             padding: '10px',
             cursor: 'pointer',
-            margin: '20px auto',
+            margin: '10px auto',
             textAlign: 'center',
+            borderRadius: '5px',
             backgroundColor: isActive('colors') ? '#00a63e' : 'transparent',
             color: isActive('colors') ? '#fff' : '#fff',
           }}
         >
           Colors
+        </li>
+        <li
+          onClick={() => handleNavigate('faq')}
+          style={{
+            padding: '10px',
+            cursor: 'pointer',
+            margin: '10px auto',
+            textAlign: 'center',
+            borderRadius: '5px',
+            backgroundColor: isActive('faq') ? '#00a63e' : 'transparent',
+            color: isActive('faq') ? '#fff' : '#fff',
+          }}
+        >
+          Faq
+        </li>
+        <li
+          onClick={() => handleNavigate('contact')}
+          style={{
+            padding: '10px',
+            cursor: 'pointer',
+            margin: '10px auto',
+            textAlign: 'center',
+            borderRadius: '5px',
+            backgroundColor: isActive('contact') ? '#00a63e' : 'transparent',
+            color: isActive('contact') ? '#fff' : '#fff',
+          }}
+        >
+          Contact
+        </li>
+        <li
+          onClick={() => handleNavigate('team')}
+          style={{
+            padding: '10px',
+            cursor: 'pointer',
+            margin: '10px auto',
+            textAlign: 'center',
+            borderRadius: '5px',
+            backgroundColor: isActive('team') ? '#00a63e' : 'transparent',
+            color: isActive('team') ? '#fff' : '#fff',
+          }}
+        >
+          Team
+        </li>
+        <li
+          onClick={() => handleNavigate('news')}
+          style={{
+            padding: '10px',
+            cursor: 'pointer',
+            margin: '10px auto',
+            textAlign: 'center',
+            borderRadius: '5px',
+            backgroundColor: isActive('news') ? '#00a63e' : 'transparent',
+            color: isActive('news') ? '#fff' : '#fff',
+          }}
+        >
+          News
         </li>
       </ul>
     </aside>

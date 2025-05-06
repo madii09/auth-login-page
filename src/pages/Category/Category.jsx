@@ -68,7 +68,6 @@ const Category = () => {
           toast.error(response?.message || 'Failed to delete category.');
         }
       });
-    // .catch(() => toast.error('Error deleting category.'));
   };
 
   //patch update
