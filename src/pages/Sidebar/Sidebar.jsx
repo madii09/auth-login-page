@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
+import './sidebar.scss';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -38,6 +39,20 @@ const Sidebar = () => {
           width: '90%',
         }}
       >
+        <li
+          onClick={() => handleNavigate('products')}
+          style={{
+            padding: '10px',
+            cursor: 'pointer',
+            borderRadius: '5px',
+            margin: '20px auto',
+            textAlign: 'center',
+            backgroundColor: isActive('products') ? '#00a63e' : 'transparent',
+            color: isActive('category') ? '#fff' : '#fff',
+          }}
+        >
+          Products
+        </li>
         <li
           onClick={() => handleNavigate('category')}
           style={{

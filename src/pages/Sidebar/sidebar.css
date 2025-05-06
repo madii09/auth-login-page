@@ -1,0 +1,13 @@
+aside ul li {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+aside ul li:hover {
+  background-color: #f0f0f0;
+}
+aside ul li.active {
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+}/*# sourceMappingURL=sidebar.css.map */

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Category from './pages/Category';
-import Discount from './pages/Discount';
-import Layout from './layout/Layout';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Layout from './layout/Layout';
+import Category from './pages/Category/Category';
+import Discount from './pages/Discount/Discount';
+import Home from './pages/Home';
+import Login from './pages/Login/Login';
+import Products from './pages/Products/Products';
 
 const App = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/' element={<Login />} />
         <Route element={<Layout />}>
           <Route path='/home' element={<Home />} />
+          <Route path='/products' element={<Products />} />
           <Route path='/category' element={<Category />} />
           <Route path='/discount' element={<Discount />} />
         </Route>

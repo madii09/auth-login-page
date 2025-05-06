@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-const Category = () => {
+const Products = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const getCategory = () => {
@@ -42,7 +42,7 @@ const Category = () => {
       .then((item) => {
         if (item?.success) {
           toast.success('Successful');
-          getCategory();
+          // getCategory();
           setModalOpen(false);
         } else {
           toast.error('Failed');
@@ -194,5 +194,4 @@ const Category = () => {
     </div>
   );
 };
-
-export default Category;
+export default Products;
