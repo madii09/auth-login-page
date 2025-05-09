@@ -7,7 +7,7 @@ const Products = () => {
   const getCategory = () => {
     fetch('https://back.ifly.com.uz/api/product?page=1&limit=10&min_sell=2')
       .then((res) => res.json())
-      .then((item) => setData(item?.data));
+      .then((item) => setData(item?.data?.products));
   };
 
   //get api
@@ -18,8 +18,15 @@ const Products = () => {
 
   //post api
 
-  const [product, setProduct] = useState('');
-  const [pagination, setPagination] = useState('');
+  const [image, setImage] = useState('');
+  const [titleEn, setTitleEn] = useState('');
+  const [descriptionEn, setDescriptionEn] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
+  const [colors, setColors] = useState('');
+  const [sizes, setSizes] = useState('');
+  const [discount, setDiscount] = useState('');
+  const [materials, setMaterials] = useState('');
   const token = localStorage.getItem('accesstokenn');
 
   const createCategory = (event) => {
@@ -32,8 +39,15 @@ const Products = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        products: product,
-        pagination: pagination,
+        images: image,
+        title_en: titleEn,
+        description_en: descriptionEn,
+        price: price,
+        category: category,
+        colors: colors,
+        sizes: sizes,
+        discount: discount,
+        materials: materials,
       }),
     })
       .then((response) => response.json())
@@ -84,8 +98,15 @@ const Products = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          products: product,
-          pagination: pagination,
+          images: image,
+          title_en: titleEn,
+          description_en: descriptionEn,
+          price: price,
+          category: category,
+          colors: colors,
+          sizes: sizes,
+          discount: discount,
+          materials: materials,
         }),
       }
     )
@@ -104,7 +125,7 @@ const Products = () => {
   return (
     <div className='category-container'>
       <div className='category-header-container'>
-        <h2>Category</h2>
+        <h2>Products</h2>
 
         <div className='btn'>
           <button
@@ -114,7 +135,7 @@ const Products = () => {
               setEditModalOpen(false);
             }}
           >
-            Add Category
+            Add Product
           </button>
         </div>
       </div>
@@ -125,32 +146,74 @@ const Products = () => {
             <div className='close' onClick={() => setModalOpen(false)}>
               x
             </div>
-            <h3>Add Category</h3>
+            <h3>Add Product</h3>
             <form onSubmit={createCategory}>
               <label htmlFor=''>Category Name (EN)</label>
               <input
-                onChange={(e) => setProduct(e.target.value)}
+                onChange={(e) => setImage(e.target.value)}
                 type='text'
                 placeholder='English name'
                 required
               />
               <label htmlFor=''>Category Name (RU)</label>
               <input
-                onChange={(e) => setPagination(e.target.value)}
+                onChange={(e) => setTitleEn(e.target.value)}
                 type='text'
                 placeholder='Russian name'
                 required
               />
-              {/* <label htmlFor=''>Category Name (DE)</label>
+              <label htmlFor=''>Category Name (EN)</label>
               <input
-                onChange={(e) => setNameDe(e.target.value)}
+                onChange={(e) => setDescriptionEn(e.target.value)}
                 type='text'
-                placeholder='German name'
+                placeholder='English name'
                 required
-              /> */}
+              />
+              <label htmlFor=''>Category Name (EN)</label>
+              <input
+                onChange={(e) => setPrice(e.target.value)}
+                type='text'
+                placeholder='English name'
+                required
+              />
+              <label htmlFor=''>Category Name (EN)</label>
+              <input
+                onChange={(e) => setCategory(e.target.value)}
+                type='text'
+                placeholder='English name'
+                required
+              />
+              <label htmlFor=''>Category Name (EN)</label>
+              <input
+                onChange={(e) => setColors(e.target.value)}
+                type='text'
+                placeholder='English name'
+                required
+              />
+              <label htmlFor=''>Category Name (EN)</label>
+              <input
+                onChange={(e) => setSizes(e.target.value)}
+                type='text'
+                placeholder='English name'
+                required
+              />
+              <label htmlFor=''>Category Name (EN)</label>
+              <input
+                onChange={(e) => setDiscount(e.target.value)}
+                type='text'
+                placeholder='English name'
+                required
+              />
+              <label htmlFor=''>Category Name (EN)</label>
+              <input
+                onChange={(e) => setMaterials(e.target.value)}
+                type='text'
+                placeholder='English name'
+                required
+              />
             </form>
             <button type='submit' onClick={createCategory}>
-              Add Category
+              Add Product
             </button>
           </div>
         </div>
@@ -162,23 +225,18 @@ const Products = () => {
             <h3>Edit Category</h3>
             <form onSubmit={editCategory}>
               <input
-                onChange={(e) => setProduct(e.target.value)}
+                onChange={(e) => setImage(e.target.value)}
                 type='text'
                 placeholder='name en'
                 required
               />
               <input
-                onChange={(e) => setPagination(e.target.value)}
+                onChange={(e) => setTitleEn(e.target.value)}
                 type='text'
                 placeholder='name ru'
                 required
               />
-              {/* <input
-                onChange={(e) => setNameDe(e.target.value)}
-                type='text'
-                placeholder='name de'
-                required
-              /> */}
+
               <button type='submit'>Save Changes</button>
             </form>
             <button onClick={() => setEditModalOpen(false)}>Close</button>
@@ -202,11 +260,20 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((item, index) => (
+          {data?.products?.map((item, index) => (
             <tr key={item.id}>
               <td>{index + 1}</td>
-              <td>{item.product}</td>
-              <td>{item.pagination}</td>
+              <td>{item.images?.[0]}</td>
+              <td>{item.title_en}</td>
+              <td>{item.description_en}</td>
+              <td>{item.price}</td>
+              <td>{item.category?.name_en}</td>
+              <td>{item.colors}</td>
+              <td>{item.sizes}</td>
+              <td>
+                {item.discount ? `${item.discount.discount}%` : 'No discount'}
+              </td>
+              <td>{item.materials}</td>
               <td>
                 <button
                   className='btn-edit'
@@ -224,6 +291,17 @@ const Products = () => {
                 >
                   Delete
                 </button>
+              </td>
+              <td>
+                {item.materials
+                  ? Object.entries(item.materials).map(
+                      ([materialId, quantity]) => (
+                        <div key={materialId}>
+                          ID: {materialId}, Qty: {quantity}
+                        </div>
+                      )
+                    )
+                  : 'N/A'}
               </td>
             </tr>
           ))}

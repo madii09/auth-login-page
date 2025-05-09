@@ -72,11 +72,6 @@ const Login = () => {
           />
         </div>
 
-        {/* <div className='checkbox-group'>
-          <input type='checkbox' id='remember' required />
-          <label htmlFor='remember'>Remember me</label>
-        </div> */}
-
         <button type='submit'>Login</button>
       </form>
 

@@ -165,7 +165,10 @@ const Discount = () => {
       {editModalOpen && (
         <div className='modal-overlay' onClick={() => setEditModalOpen(false)}>
           <div className='modal' onClick={(e) => e.stopPropagation()}>
-            <h3>Edit Category</h3>
+            <div className='close' onClick={() => setEditModalOpen(false)}>
+              x
+            </div>
+            <h3>Edit Discount</h3>
             <form onSubmit={editDiscount}>
               <input
                 onChange={(e) => setDiscount(e.target.value)}
@@ -187,7 +190,7 @@ const Discount = () => {
               />
               <button type='submit'>Save Changes</button>
             </form>
-            <button onClick={() => setEditModalOpen(false)}>Close</button>
+            {/* <button onClick={() => setEditModalOpen(false)}>Close</button> */}
           </div>
         </div>
       )}

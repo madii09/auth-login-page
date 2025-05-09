@@ -174,6 +174,9 @@ const FAq = () => {
       {editModalOpen && (
         <div className='modal-overlay' onClick={() => setEditModalOpen(false)}>
           <div className='modal' onClick={(e) => e.stopPropagation()}>
+            <div className='close' onClick={() => setEditModalOpen(false)}>
+              x
+            </div>
             <h3>Edit FAQ</h3>
             <form onSubmit={editCategory}>
               <input
@@ -191,7 +194,6 @@ const FAq = () => {
 
               <button type='submit'>Save Changes</button>
             </form>
-            <button onClick={() => setEditModalOpen(false)}>Close</button>
           </div>
         </div>
       )}

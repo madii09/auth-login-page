@@ -129,6 +129,9 @@ const Sizes = () => {
       {editModalOpen && (
         <div className='modal-overlay' onClick={() => setEditModalOpen(false)}>
           <div className='modal' onClick={(e) => e.stopPropagation()}>
+            <div className='close' onClick={() => setEditModalOpen(false)}>
+              x
+            </div>
             <h3>Edit Size</h3>
             <form onSubmit={editCategory}>
               <input

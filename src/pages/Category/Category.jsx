@@ -120,7 +120,7 @@ const Category = () => {
       {modalOpen && (
         <div className='modal-overlay' onClick={() => setModalOpen(false)}>
           <div className='modal' onClick={(e) => e.stopPropagation()}>
-            <div className='close' onClick={() => setModalOpen(false)}>
+            <div className='close' onClick={() => setEditModalOpen(false)}>
               x
             </div>
             <h3>Add Category</h3>
@@ -179,7 +179,7 @@ const Category = () => {
               />
               <button type='submit'>Save Changes</button>
             </form>
-            <button onClick={() => setEditModalOpen(false)}>Close</button>
+            {/* <button onClick={() => setEditModalOpen(false)}>Close</button> */}
           </div>
         </div>
       )}
