@@ -5,11 +5,18 @@ import Navbar from '../components/Navbar';
 
 const Layout = () => {
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div className='layout_container' style={{ display: 'flex' }}>
       <Sidebar style={{ width: '250px' }} />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'auto',
+        }}
+      >
         <Navbar />
-        <div style={{ flex: 1, padding: '20px' }}>
+        <div style={{ padding: '20px' }}>
           <Outlet />
         </div>
       </div>

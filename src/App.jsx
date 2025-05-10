@@ -26,7 +26,7 @@ const App = () => {
   }, [navigate, token]);
 
   return (
-    <>
+    <div className='app-container'>
       <Routes>
         <Route path='/' element={<Login />} />
         <Route element={<Layout />}>
@@ -44,7 +44,7 @@ const App = () => {
         <Route />
       </Routes>
       <ToastContainer />
-    </>
+    </div>
   );
 };
 

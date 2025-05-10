@@ -5,7 +5,7 @@ const Colors = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/colors')
+    fetch('https://testaoron.limsa.uz/api/colors')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -25,7 +25,7 @@ const Colors = () => {
 
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/colors', {
+    fetch('https://testaoron.limsa.uz/api/colors', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const Colors = () => {
   };
   //delete
   const deleteCategory = (id) => {
-    fetch(`https://back.ifly.com.uz/api/colors/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/colors/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const Colors = () => {
   const [clickId, setClickId] = useState();
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(`https://back.ifly.com.uz/api/colors/${clickId}`, {
+    fetch(`https://testaoron.limsa.uz/api/colors/${clickId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

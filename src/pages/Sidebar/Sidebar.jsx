@@ -16,12 +16,13 @@ const Sidebar = () => {
 
   return (
     <aside
+      className='sidebar_aside'
       style={{
         backgroundColor: '#1e2939',
         color: '#fff',
         padding: '20px',
-        height: '100vh',
         display: 'flex',
+        height: '100vh',
         flexDirection: 'column',
         width: '220px',
         alignItems: 'center',

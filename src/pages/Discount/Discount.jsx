@@ -6,7 +6,7 @@ const Discount = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const getDiscount = () => {
-    fetch('https://back.ifly.com.uz/api/discount')
+    fetch('https://testaoron.limsa.uz/api/discount')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -28,7 +28,7 @@ const Discount = () => {
 
   const createDiscount = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/discount', {
+    fetch('https://testaoron.limsa.uz/api/discount', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const Discount = () => {
   };
   //delete
   const deleteDiscount = (id) => {
-    fetch(`https://back.ifly.com.uz/api/discount/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/discount/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const Discount = () => {
   const [clickId, setClickId] = useState();
   const editDiscount = (e) => {
     e.preventDefault();
-    fetch(`https://back.ifly.com.uz/api/discount/${clickId}`, {
+    fetch(`https://testaoron.limsa.uz/api/discount/${clickId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -173,24 +173,23 @@ const Discount = () => {
               <input
                 onChange={(e) => setDiscount(e.target.value)}
                 type='text'
-                placeholder='name en'
+                placeholder='discount'
                 required
               />
               <input
                 onChange={(e) => setCreatedDate(e.target.value)}
-                type='text'
-                placeholder='name ru'
+                type='date'
+                placeholder='created date'
                 required
               />
               <input
                 onChange={(e) => setFinishedDate(e.target.value)}
-                type='text'
-                placeholder='name de'
+                type='date'
+                placeholder='finished date'
                 required
               />
               <button type='submit'>Save Changes</button>
             </form>
-            {/* <button onClick={() => setEditModalOpen(false)}>Close</button> */}
           </div>
         </div>
       )}

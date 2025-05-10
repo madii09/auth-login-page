@@ -6,7 +6,7 @@ const Category = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/category')
+    fetch('https://testaoron.limsa.uz/api/category')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -26,7 +26,7 @@ const Category = () => {
 
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/category', {
+    fetch('https://testaoron.limsa.uz/api/category', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const Category = () => {
   };
   //delete
   const deleteCategory = (id) => {
-    fetch(`https://back.ifly.com.uz/api/category/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/category/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const Category = () => {
   const [clickId, setClickId] = useState();
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(`https://back.ifly.com.uz/api/category/${clickId}`, {
+    fetch(`https://testaoron.limsa.uz/api/category/${clickId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -179,7 +179,6 @@ const Category = () => {
               />
               <button type='submit'>Save Changes</button>
             </form>
-            {/* <button onClick={() => setEditModalOpen(false)}>Close</button> */}
           </div>
         </div>
       )}

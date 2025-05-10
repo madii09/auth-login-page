@@ -5,7 +5,7 @@ const FAq = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/faq')
+    fetch('https://testaoron.limsa.uz/api/faq')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -24,7 +24,7 @@ const FAq = () => {
 
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/faq', {
+    fetch('https://testaoron.limsa.uz/api/faq', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const FAq = () => {
   };
   //delete
   const deleteCategory = (id) => {
-    fetch(`https://back.ifly.com.uz/api/faq/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/faq/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const FAq = () => {
   const [clickId, setClickId] = useState();
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(`https://back.ifly.com.uz/api/faq/${clickId}`, {
+    fetch(`https://testaoron.limsa.uz/api/faq/${clickId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

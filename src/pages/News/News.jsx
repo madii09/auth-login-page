@@ -5,7 +5,7 @@ const News = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/news')
+    fetch('https://testaoron.limsa.uz/api/news')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -25,7 +25,7 @@ const News = () => {
 
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/news', {
+    fetch('https://testaoron.limsa.uz/api/news', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const News = () => {
   };
   //delete
   const deleteCategory = (id) => {
-    fetch(`https://back.ifly.com.uz/api/news/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/news/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const News = () => {
   const [clickId, setClickId] = useState();
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(`https://back.ifly.com.uz/api/news/${clickId}`, {
+    fetch(`https://testaoron.limsa.uz/api/news/${clickId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
@@ -199,7 +199,12 @@ const News = () => {
           {data?.map((item, index) => (
             <tr key={item.id}>
               <td>{index + 1}</td>
-              <td>{item.image}</td>
+              <td>
+                <img
+                  src={`https://testaoron.limsa.uz/${item.image}`}
+                  alt='img'
+                />
+              </td>
               <td>{item.title_en}</td>
               <td>{item.description_en}</td>
               <td>

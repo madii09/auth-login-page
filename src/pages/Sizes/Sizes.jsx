@@ -10,7 +10,7 @@ const Sizes = () => {
   const token = localStorage.getItem('accesstokenn');
 
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/sizes')
+    fetch('https://testaoron.limsa.uz/api/sizes')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -21,7 +21,7 @@ const Sizes = () => {
 
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/sizes', {
+    fetch('https://testaoron.limsa.uz/api/sizes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const Sizes = () => {
       });
   };
   const deleteCategory = (id) => {
-    fetch(`https://back.ifly.com.uz/api/sizes/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/sizes/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const Sizes = () => {
 
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(`https://back.ifly.com.uz/api/sizes/${clickId}`, {
+    fetch(`https://testaoron.limsa.uz/api/sizes/${clickId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',

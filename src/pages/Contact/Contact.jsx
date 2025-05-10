@@ -12,7 +12,7 @@ const Contact = () => {
   const token = localStorage.getItem('accesstokenn');
 
   const getCategory = () => {
-    fetch('https://back.ifly.com.uz/api/contact-form')
+    fetch('https://testaoron.limsa.uz/api/contact-form')
       .then((res) => res.json())
       .then((item) => setData(item?.data));
   };
@@ -23,7 +23,7 @@ const Contact = () => {
 
   const createCategory = (event) => {
     event.preventDefault();
-    fetch('https://back.ifly.com.uz/api/contact-form', {
+    fetch('https://testaoron.limsa.uz/api/contact-form', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +40,6 @@ const Contact = () => {
       .then((item) => {
         if (item?.success) {
           toast.success('Successful');
-          ///////here
           getCategory();
           setModalOpen(false);
         } else {
@@ -50,7 +49,7 @@ const Contact = () => {
   };
 
   const deleteCategory = (id) => {
-    fetch(`https://back.ifly.com.uz/api/contact-form/${id}`, {
+    fetch(`https://testaoron.limsa.uz/api/contact-form/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -70,7 +69,7 @@ const Contact = () => {
 
   const editCategory = (e) => {
     e.preventDefault();
-    fetch(`https://back.ifly.com.uz/api/contact-form/${clickId}`, {
+    fetch(`https://testaoron.limsa.uz/api/contact-form/${clickId}`, {
       method: 'PATCH',
       headers: {
         'Content-type': 'application/json',
