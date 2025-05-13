@@ -101,7 +101,7 @@ const News = () => {
   return (
     <div className='category-container'>
       <div className='category-header-container'>
-        <h2>Category</h2>
+        <h2>News</h2>
 
         <div className='btn'>
           <button
@@ -111,7 +111,7 @@ const News = () => {
               setEditModalOpen(false);
             }}
           >
-            Add Category
+            Add News
           </button>
         </div>
       </div>
@@ -122,7 +122,7 @@ const News = () => {
             <div className='close' onClick={() => setModalOpen(false)}>
               x
             </div>
-            <h3>Add Category</h3>
+            <h3>Add News</h3>
             <form onSubmit={createCategory}>
               <label htmlFor=''>Category Name (EN)</label>
               <input
@@ -147,7 +147,7 @@ const News = () => {
               />
             </form>
             <button type='submit' onClick={createCategory}>
-              Add Category
+              Add News
             </button>
           </div>
         </div>
